@@ -18,7 +18,12 @@ And nao posso ver meu histórico de músicas ouvidas recentemente
 And nao posso ver minhas playlists
 And vejo uma mensagem na parte de cima da tela: “Faça login”
 
-Cenário: Busca que não retorna resultados
-opapaa
+Cenário: Busca que não retorna resultados // implementacao do cenario
+Given estou logado como “Usuário” com login “LuisCardoso012” e senha “1234”
+And estou na página de busca
+And nao existe nenhum item no sistema que tenha título “MusicaPesada123” ou semelhante 
+When realizo uma busca pelo termo “MusicaPesada123”
+Then o sistema deve exibir um placeholder informando que nenhum resultado foi encontrado 
+And nenhum conteúdo deve ser listado
+And Eu continuo na página de busca
 
-Cenário: Exibição do histórico de filtros ao abrir a busca
