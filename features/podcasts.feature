@@ -36,3 +36,4 @@ And não deve manter o histórico da versão antiga do áudio
 Scenario: Definir fuso horario
 Given que o criador quer agendar um podcast
 Then o sistema deve permitir escolher o fuso horario
+
