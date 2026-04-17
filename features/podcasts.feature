@@ -18,4 +18,17 @@ Given que um criador tenta fazer o upload do arquivo "videocast.mp4"
 When o sistema valida o tipo de mídia do arquivo
 Then o upload deve ser rejeitado
 And o sistema deve exibir a mensagem de erro "Apenas arquivos de áudio são permitidos."
-Then something
+
+Feature: Métricas de Popularidade
+Scenario: Visualização de acessos totais por usuários externos
+Given que o episódio "Engenharia de Software 101" possui 500 acessos
+When um visitante anônimo acessa a página do podcast
+Then o sistema deve exibir o contador com "500 acessos"
+And essa informação deve estar disponível publicamente
+
+Feature: Gerenciamento de Episódios
+Scenario: Atualização de arquivo de áudio sem manter histórico
+Given que o criador tem um episódio "Episódio 1" publicado
+When ele faz o upload de um novo arquivo de áudio para atualizar o "Episódio 1"
+Then o sistema deve substituir o arquivo anterior permanentemente
+
