@@ -18,3 +18,4 @@ Given que um criador tenta fazer o upload do arquivo "videocast.mp4"
 When o sistema valida o tipo de mídia do arquivo
 Then o upload deve ser rejeitado
 And o sistema deve exibir a mensagem de erro "Apenas arquivos de áudio são permitidos."
+Then something
