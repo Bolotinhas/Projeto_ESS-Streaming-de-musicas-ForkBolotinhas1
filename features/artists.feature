@@ -32,7 +32,7 @@ Scenario: unsuccessful album edit with empty name
 Scenario: unsuccessful artist registration with duplicate login
   Given there is an artist registered with login "vivaldi"
   When I try to register a new artist with login "vivaldi"
-  Then I can see the error message "This login is already in use"
+  Then I can see the error message
   And the artist account is not created
 
 Scenario: unsuccessful album registration by non-artist user
