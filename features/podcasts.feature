@@ -37,3 +37,6 @@ Scenario: Definir fuso horario
 Given que o criador quer agendar um podcast
 Then o sistema deve permitir escolher o fuso horario
 
+Scenario: Upload longo
+Given um arquivo de audio de 5 horas
+Then o sistema deve aceitar sem limite de duracao
