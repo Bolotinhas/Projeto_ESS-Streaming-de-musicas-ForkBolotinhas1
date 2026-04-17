@@ -31,4 +31,4 @@ Scenario: Atualização de arquivo de áudio sem manter histórico
 Given que o criador tem um episódio "Episódio 1" publicado
 When ele faz o upload de um novo arquivo de áudio para atualizar o "Episódio 1"
 Then o sistema deve substituir o arquivo anterior permanentemente
-
+And não deve manter o histórico da versão antiga, economizando espaço
