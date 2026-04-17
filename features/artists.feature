@@ -26,3 +26,12 @@ Scenario: unsuccessful album registration without songs
   And I click "Publish"
   Then I can see the error message "An album must have at least one song"
   And the album "Four Seasons" is not indexed on the platform
+
+Scenario: unsuccessful album edit with empty name
+  Given I am logged in as artist "Vivaldi"
+  And there is an album "Four Seasons" published by "Vivaldi"
+  And I am at the "Edit Album" page for "Four Seasons"
+  When I clear the field "Name"
+  And I click "Save"
+  Then I can see the error message "Album name cannot be empty"
+  And the album remains listed as "Four Seasons"
