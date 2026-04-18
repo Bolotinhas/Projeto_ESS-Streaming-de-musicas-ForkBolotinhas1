@@ -50,5 +50,6 @@ And aplico o filtro de gênero "MPB"
 Then o sistema deve exibir a música "Se.." nos resultados
 And os resultados devem estar ordenados de forma decrescente pelo total de reproduções
 And nenhuma música de gênero diferente de "MPB" deve ser listada
+And aqui esta a modificacao no ultimo cenario!!
 
 
