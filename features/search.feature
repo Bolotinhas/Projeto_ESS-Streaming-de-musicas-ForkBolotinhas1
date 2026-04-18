@@ -34,3 +34,10 @@ And aplico o filtro de gênero "GeneroInexistente123"
 Then devo ver um placeholder informando que não houveram resultados
 And o sistema não deve exibir nenhum item na lista de resultados
 
+Cenário: Exibição do histórico de filtros ao abrir a busca
+Given estou logado como “Usuário” com login “LuisCardoso012” e senha “1234”
+And o sistema possui os filtros “MPB”, “Djavan” armazenados como filtros utilizados na última busca feita pela conta
+When acesso a tela de busca sem realizar mais nenhuma ação
+Then o sistema deve exibir os filtros “MPB”, “Djavan” como últimos filtros aplicados
+
+
