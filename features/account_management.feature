@@ -49,3 +49,15 @@ And eu clico em "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "Preencha os campos de atualização com dados válidos."
 And a senha da minha conta não é alterada
 And o campo "Senha" deve estar destacado como inválido
+
+Scenario: Atualização de informação da conta sem preencher valores
+Given eu estou logado na minha conta
+And as informações atuais da minha conta são
+    |  nome  |        senha        |
+    | abc123 | Senhasupersecreta1! |
+And eu estou na página de "Página inicial”
+When eu clico no botão de "Atualizar conta"
+And eu não preencho os campos de atualização
+And eu clico em "Confirmar"
+Then eu vejo uma mensagem na tela dizendo "Preencha os campos de atualização com dados válidos."
+And nenhuma informação da minha conta é alterada
