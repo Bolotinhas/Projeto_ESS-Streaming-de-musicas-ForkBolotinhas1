@@ -72,3 +72,13 @@ And eu preencho o campo de "Senha" com "Senhasupersecreta1!"
 And eu clico no botão de "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "Sua conta foi desativada com sucesso. Para ativá-la novamente, basta realizar o login."
 And minha conta deve estar desativada até eu fizer o Login
+
+Scenario: Erro ao não inserir a senha correta para desativar conta
+Given eu estou logado na minha conta
+And a senha atual da minha conta é "Senhasupersecreta1!"
+And eu estou na página de "Página inicial"
+When eu clico no botão de "Desativar conta"
+And eu preencho o campo de "Senha" com "Senha!"
+And eu clico no botão de "Confirmar"
+Then eu vejo uma mensagem na tela dizendo "Insira a senha correta para confirmar o desligamento."
+And a minha conta deve continuar ativa
