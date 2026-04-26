@@ -90,3 +90,13 @@ When eu clico no botão de "Desativar conta"
 And eu clico no botão de "Cancelar"
 Then eu retorno para a "Página inicial"
 And minha conta não é desligada do sistema
+
+Scenario: Remover a conta do serviço de streaming de música
+Given eu estou logado na minha conta
+And a senha atual da minha conta é "Senhasupersecreta1!"
+And eu estou na página de "Página inicial"
+When eu clico no botão de "Remover conta"
+And eu preencho o campo de "Senha" com "Senhasupersecreta1!"
+And eu clico no botão de "Confirmar"
+Then eu vejo uma mensagem na tela dizendo "Sua conta foi removida do sistema com sucesso."
+And minha conta não deve mais existir no sistema
