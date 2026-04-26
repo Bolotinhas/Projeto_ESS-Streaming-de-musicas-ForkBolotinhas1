@@ -82,3 +82,11 @@ And eu preencho o campo de "Senha" com "Senha!"
 And eu clico no botão de "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "Insira a senha correta para confirmar o desligamento."
 And a minha conta deve continuar ativa
+
+Scenario: Usuário cancela a desativação da conta
+Given eu estou logado na minha conta
+And eu estou na página de "Página inicial"
+When eu clico no botão de "Desativar conta"
+And eu clico no botão de "Cancelar"
+Then eu retorno para a "Página inicial"
+And minha conta não é desligada do sistema
