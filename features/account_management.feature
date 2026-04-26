@@ -27,16 +27,17 @@ And o campo "Nome" deve estar destacado como inválido
 Scenario: Atualização de várias informações da conta
 Given eu estou logado na minha conta
 And as informações atuais da minha conta são
-    |  nome  |        senha        |
-    | abc123 | Senhasupersecreta1! |
+    |  nome  |        senha        |  tipo de conta  |
+    | abc123 | Senhasupersecreta1! |     Ouvinte     |
 And eu estou na página de "Página inicial”
 When eu clico no botão de "Atualizar conta"
 And eu preencho os campos com
-    |  nome  |        senha        |
-    | abc124 | Senhasupersecreta2! |
+    |  nome  |        senha        |  tipo de conta  |
+    | abc124 | Senhasupersecreta2! |     Artista     |
 And eu clico em "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "As informações da sua conta foram atualizadas com sucesso."
 And meu Nome deve ser "abc124"
+And meu tipo de conta deve ser alterado para "Artista"
 And eu devo conseguir autenticar com a nova senha
 
 Scenario: Atualização de informação com um valor inválido
@@ -53,8 +54,8 @@ And o campo "Senha" deve estar destacado como inválido
 Scenario: Atualização de informação da conta sem preencher valores
 Given eu estou logado na minha conta
 And as informações atuais da minha conta são
-    |  nome  |        senha        |
-    | abc123 | Senhasupersecreta1! |
+    |  nome  |        senha        |  tipo de conta  |
+    | abc123 | Senhasupersecreta1! |     Ouvinte     |
 And eu estou na página de "Página inicial”
 When eu clico no botão de "Atualizar conta"
 And eu não preencho os campos de atualização
