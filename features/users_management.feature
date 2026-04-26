@@ -14,6 +14,18 @@ And eu clico em "Salvar"
 Then o usuário deve ser cadastrado com sucesso
 And ele deve aparecer na lista de usuários
 
+Scenario: Inserir um novo usuário artista a partir da área de manutenção
+Given eu estou logado como administrador
+And eu estou na página de "Gerenciamento de usuários"
+When eu clico na opção "Adicionar usuário"
+And eu preencho os dados do usuário com
+    |  login  |  nome  |        senha        |      email       |  tipo de conta  |   Descricao   |
+    |  abcabc | abc123 | Senhasupersecreta1! | abc123@gmail.com |     Artista     |     xxxxx     |
+And eu clico em "Salvar"
+Then o usuário deve ser cadastrado com sucesso
+And o usuario deve aparecer na lista de usuários
+And o usuario deve ser capaz de criar músicas
+
 Scenario: Atualizar informações de um usuário existente
 Given existe um usuário cadastrado no sistema
 And eu estou logado como administrador
