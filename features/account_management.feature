@@ -27,17 +27,16 @@ And o campo "Nome" deve estar destacado como inválido
 Scenario: Atualização de várias informações da conta
 Given eu estou logado na minha conta
 And as informações atuais da minha conta são
-    |  nome  |        senha        |  tipo de conta  |
-    | abc123 | Senhasupersecreta1! |     Ouvinte     |
+    |  nome  |        senha        |
+    | abc123 | Senhasupersecreta1! |
 And eu estou na página de "Página inicial”
 When eu clico no botão de "Atualizar conta"
 And eu preencho os campos com
-    |  nome  |        senha        |  tipo de conta  |
-    | abc124 | Senhasupersecreta2! |     Artista     |
+    |  nome  |        senha        |
+    | abc124 | Senhasupersecreta2! |
 And eu clico em "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "As informações da sua conta foram atualizadas com sucesso."
 And meu Nome deve ser "abc124"
-And meu tipo de conta deve ser "Artista"
 And eu devo conseguir autenticar com a nova senha
 
 Scenario: Atualização de informação com um valor inválido
@@ -47,6 +46,6 @@ And eu estou na página de "Página inicial”
 When eu clico no botão de "Atualizar conta"
 And eu preencho o campo "Senha" com "senha"
 And eu clico em "Confirmar"
-Then eu vejo uma mensagem da tela dizendo "Preencha os campos de atualização com dados válidos."
+Then eu vejo uma mensagem na tela dizendo "Preencha os campos de atualização com dados válidos."
 And a senha da minha conta não é alterada
 And o campo "Senha" deve estar destacado como inválido
