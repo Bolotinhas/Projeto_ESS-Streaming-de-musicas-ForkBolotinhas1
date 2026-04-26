@@ -62,3 +62,13 @@ And eu não preencho os campos de atualização
 And eu clico em "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "Preencha os campos de atualização com dados válidos."
 And nenhuma informação da minha conta é alterada
+
+Scenario: Desativar conta do streaming de música
+Given eu estou logado na minha conta
+And a senha atual da minha conta é "Senhasupersecreta1!"
+And eu estou na página de "Página inicial"
+When eu clico no botão de "Desativar conta"
+And eu preencho o campo de "Senha" com "Senhasupersecreta1!"
+And eu clico no botão de "Confirmar"
+Then eu vejo uma mensagem na tela dizendo "Sua conta foi desativada com sucesso. Para ativá-la novamente, basta realizar o login."
+And minha conta deve estar desativada até eu fizer o Login
