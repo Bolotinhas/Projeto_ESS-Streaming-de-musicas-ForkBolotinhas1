@@ -9,3 +9,12 @@ And eu estou na página de "Página inicial"
 When eu clico na opção de "Visualizar histórico"
 Then eu devo ver na tela músicas e podcasts no mesmo histórico
 And os itens devem estar ordenados do mais recente para o mais antigo
+
+Scenario: Visualizar apenas o que for filtrado no histórico
+Given eu estou logado na minha conta
+And existem músicas e podcasts no meu histórico
+And eu estou na página de "Página inicial"
+When eu clico na opção de "Visualizar histórico"
+And eu filtro o histórico por "Músicas"
+Then eu devo ver apenas itens do tipo "Músicas"
+And os itens devem estar ordenados do mais recente para o mais antigo
