@@ -18,3 +18,13 @@ When eu clico na opção de "Visualizar histórico"
 And eu filtro o histórico por "Músicas"
 Then eu devo ver apenas itens do tipo "Músicas"
 And os itens devem estar ordenados do mais recente para o mais antigo
+
+Scenario: Alternar entre visualização unificada e separada
+Given eu estou logado na minha conta
+And existem músicas e podcasts no meu histórico
+And eu estou na página de "Página inicial"
+When eu clico na opção de "Visualizar histórico"
+And eu filtro o histórico por "Músicas"
+And eu removo o filtro
+Then eu devo ver músicas e podcasts no histórico
+And os itens devem estar ordenados do mais recente para o mais antigo
