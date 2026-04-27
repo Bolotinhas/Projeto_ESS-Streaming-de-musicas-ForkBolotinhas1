@@ -94,3 +94,10 @@ And eu estou na página de "Histórico"
 And meu histórico possui pelo menos um item existente
 When eu clico na opção de "Limpar histórico"
 Then o histórico deve ficar vazio 
+
+Scenario: Manter histórico após logout e login
+Given eu estou logado na minha conta
+And meu histórico possui pelo menos um item existente
+When eu faço logout
+And eu faço login após o logout
+Then meu histórico deve permanecer o mesmo
