@@ -33,6 +33,13 @@ And existe um item com título "abcd" no histórico
 When eu busco por "abcd" no histórico
 Then eu devo ver o item "abcd" nos resultados
 
+Scenario: Buscar item inexistente no histórico
+Given eu estou logado na minha conta
+And eu estou na página de "Histórico"
+And não existe um item com título "abcd" no histórico
+When eu busco por "abcd" no histórico
+Then eu devo ver uma mensagem na tela dizendo que não há resultados
+
 Scenario: Alternar entre visualização unificada e separada
 Given eu estou logado na minha conta
 And existem músicas e podcasts no meu histórico
