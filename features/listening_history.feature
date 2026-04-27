@@ -38,13 +38,13 @@ And os itens devem estar ordenados do mais recente para o mais antigo
 
 Scenario: Registrar um item que foi reproduzido quando não irá ultrapassar o limite
 Given eu estou logado na minha conta
-And meu histórico não está no limite de itens
+And meu histórico não está com o número máximo de itens
 When eu reproduzo um item do tipo "Música"
-Then o item do tipo "Música" deve ser adicionado ao meu histórico
+Then o item do tipo "Música" deve ser adicionado ao topo do histórico
 
-Scenario: Remover o item mais antigo ao atingir o limite
+Scenario: Registrar um item que foi reproduzido quando o histórico estiver no limite de itens
 Given eu estou logado na minha conta
-And meu histórico está no limite de itens
+And meu histórico está no número máximo de itens
 When eu reproduzo um item do tipo "Podcast"
 Then o item mais antigo no meu histórico deve ser removido
 And o novo item do tipo "Podcast" deve ser adicionado ao topo do histórico
