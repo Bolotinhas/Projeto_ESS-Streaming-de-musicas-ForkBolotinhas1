@@ -13,8 +13,8 @@ When acesso a página "Inicial"
 Then posso ver o campo de busca
 And posso ver a seção "Músicas em Alta"
 And posso ver a seção "Podcasts em Alta"
-And posso ver meu histórico de músicas ouvidas recentemente
-And posso ver minhas playlists
+And posso ver "Histórico de músicas e podcasts reproduzidos"
+And posso ver "Minhas playlists"
 And posso ver a seção "Configurações"
 And vejo uma mensagem na parte de cima da tela: “Ola, LuisCardoso012!”
 
