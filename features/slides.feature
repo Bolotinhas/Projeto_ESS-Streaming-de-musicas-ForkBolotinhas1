@@ -1,6 +1,43 @@
 # Usuário(Gledson)
 
 #Playlists(Peuba)
+Scenario: Criar uma playlist com sucesso
+Given que o usuário "Pedro" está logado com login"pedro123" e senha "12345"
+And o usuário está na página "Playlists"
+When o usuário seleciona a opção "Criar Playlist"
+And o usuário preenche o nome com "Músicas de rock", a descrição com
+"Melhores musicas"
+Then o usuário ainda está na página "Playlists"
+And o usuário consegue ver a playlist com o nome "Músicas
+de rock"
+
+Scenario: Falha ao tentar criar uma playlist por não ter nome
+Given que o usuário "pedro" está logado com login"pedro123" e senha "12345"
+And o usuário está na página "Playlists"
+When o usuário seleciona a opção "Criar Playlist"
+Then o usuário ainda está na página "Playlists"
+And o usuário consegue ver a mensagem "Por favor preencha o campo do nome"
+
+Scenario: Falha ao tentar criar uma playlist pois o nome já existe
+Given que o usuário "pedro" está logado com login "pedro123" e a senha "12345"
+And o usuário está na página "Playlists"
+And a playlist "Músicas de rock" já existe
+When o usuário seleciona a opção "Criar Playlist"
+And o usuário preenche o nome com "Músicas de rock", a descrição com
+"melhores musicas" 
+Then o usuário ainda está na página "Playlists"
+And o usuário consegue ver a mensagem "Essa playlist já existe ,tente outro nome"
+
+
+Scenario: Atualizando uma playlist com sucesso
+Given que o usuário "pedro" está logado e com login"pedro123" e senha"12345"
+And o usuário está na página "Playlists"
+And existe uma playlist chamada "Música de rock"
+When o usuário seleciona editar ao lado do nome "Músicas rock"
+And o usuário seleciona a opção "Atualizar"
+And o usuário muda o nome para "Músicas mpb"
+Then o usuário ainda está na página "Playlists"
+And o usuário consegue ver a playlist com o nome "Músicas mpb"
 
 #Artistas(Analia)
 
