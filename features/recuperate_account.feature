@@ -24,3 +24,9 @@ Given eu recebi um link válido de redefinição
 When eu acesso o link de redefinição
 And eu preencho o campo "Senha" com "Senhasupersecreta1!"
 Then eu posso fazer o login utilizando a nova senha
+
+Scenario: Acessar link inválido ou expirado
+Given eu recebi um link de redefinição inválido ou expirado
+When eu acesso o link de redefinição
+Then o sistema deve informar que o link é inválido ou expirado
+And eu vejo uma mensagem na tela dizendo para eu tentar receber outro link
