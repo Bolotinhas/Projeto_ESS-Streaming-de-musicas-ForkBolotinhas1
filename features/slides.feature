@@ -46,13 +46,22 @@ And posso ver "Minhas playlists"
 And posso ver a seção "Configurações"
 And vejo uma mensagem na parte de cima da tela: “Ola, LuisCardoso012!”
 
-Cenário: Busca por nome que retorna resultado
+Cenário: Busca por nome com correlação integral que retorna um resultado
 Given estou logado como “Usuário” com login “LuisCardoso012” e senha “1234”
 And estou na página "Busca"
 And existe um item com título "Love will tear us apart" do tipo "Música" armazenado no sistema
 When realizo uma busca pelo termo "Love will tear us apart"
 Then o sistema deve exibir o item "Love will tear us apart" nos resultados
-And os resultados devem estar ordenados de forma descrescente priorizando correlação
-And músicas com mesma correlação devem ser ordenadas por total de reproduções
-And nenhuma música sem correlação com "Love will tear us apart" deve ser exibida
+And eu continuo na página "Busca"
+
+Cenário: Busca por nome com correlação parcial que retorna um resultado
+Given estou logado como “Usuário” com login “LuisCardoso012” e senha “1234”
+And estou na página "Busca"
+And existe um item com título "Love will tear us apart" do tipo "Música" com 2000 reproduções armazenado no sistema
+And existe um item com título "Love, Hate, Love" do tipo "Música" com 3000 reproduções armazenado no sistema
+And existe um item com título "Love me again" do tipo "Música" com 4000 reproduções armazenado no sistema
+When realizo uma busca pelo termo "Love"
+Then o sistema deve exibir o item "Love me again" em primeiro lugar nos resultados
+And o sistema deve exibir o item "Love, Hate, Love" em segundo lugar nos resultados
+And o sistema deve exibir o item "Love will tear us apart" em terceiro lugar nos resultados
 And eu continuo na página "Busca"
