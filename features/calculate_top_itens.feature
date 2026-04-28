@@ -66,3 +66,10 @@ Given o ranking de março está armazenado
 When o ranking de abril é calculado
 Then o ranking de março deve ser substituído pelo ranking de abril
 And o ranking de março não deve estar disponível
+
+Scenario: Tentar visualizar o ranking quando não há ranking mensal armazenado
+Given eu estou logado na minha conta
+And eu estou na página de "Página inicial"
+And não há ranking mensal calculado
+When eu clico em "Visualizar ranking mensal"
+Then eu devo ver uma mensagem na tela informando que o ranking mensal ainda não foi calculado
