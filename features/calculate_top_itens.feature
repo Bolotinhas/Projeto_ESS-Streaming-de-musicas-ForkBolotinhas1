@@ -46,3 +46,9 @@ Given o item "Música A" possui 2 reproduções no mês atual
 And eu estou logado na minha conta
 When eu reproduzo o item "Música A"
 Then o item "Música A" deve passar a ter 3 reproduções no mês atual
+
+Scenario: Cálculo do ranking de uma categoria com base nas reproduções acumuladas no mês atual
+Given existem reproduções de itens da categoria "Música" registradas no mês atual
+And o ranking mensal não foi calculado
+When o sistema calcula o ranking mensal no primeiro dia do mês seguinte
+Then o sistema deve considerar todas as reproduções de itens da categoria "Música" até o último dia do mês atual
