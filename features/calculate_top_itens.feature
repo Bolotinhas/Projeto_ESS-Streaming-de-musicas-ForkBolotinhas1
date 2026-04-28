@@ -60,3 +60,9 @@ And eu estou logado na minha conta
 And eu estou na página "Página inicial"
 When eu clico em "Visualizar ranking mensal"
 Then o ranking mensal que deve aparecer é o ranking calculado em março
+
+Scenario: Substituir ranking ao calcular novo ranking
+Given o ranking de março está armazenado
+When o ranking de abril é calculado
+Then o ranking de março deve ser substituído pelo ranking de abril
+And o ranking de março não deve estar disponível
