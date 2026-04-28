@@ -21,9 +21,9 @@ And vejo uma mensagem na parte de cima da tela: “Ola, LuisCardoso012!”
 Cenário: Busca por nome que retorna resultado
 Given estou logado como “Usuário” com login “LuisCardoso012” e senha “1234”
 And estou na página "Busca"
-And existe um item com título "MusicaBonita123" do tipo "Música" armazenado no sistema
-When realizo uma busca pelo termo "MusicaBonita123"
-Then o sistema deve exibir o item "MusicaBonita123" nos resultados
+And existe um item com título "Love will tear us apart" do tipo "Música" armazenado no sistema
+When realizo uma busca pelo termo "Love will tear us apart"
+Then o sistema deve exibir o item "Love will tear us apart" nos resultados
 And os resultados devem estar ordenados de forma descrescente priorizando correlação
 And músicas com mesma correlação devem ser ordenadas por total de reproduções
-And nenhuma música sem correlação com "MúsicaBonita123" deve ser exibida
+And nenhuma música sem correlação com "Love will tear us apart" deve ser exibida
