@@ -20,7 +20,7 @@ Then o usuário ainda está na página "Playlists"
 And o usuário consegue ver a mensagem "Por favor preencha o campo do nome"
 
 Scenario: Falha ao tentar criar uma playlist pois o nome já existe
-Given que o usuário "LuisCardoso012" está logado com 
+Given que o usuário "LuisCardoso012" está logado c
 And o usuário está na página "Playlists"
 And a playlist "Músicas de rock" já existe
 When o usuário seleciona a opção "Criar Playlist"
