@@ -1,0 +1,62 @@
+Feature: Cadastro e manutenção de episódios de podcast
+
+  Scenario: Criar episódio de podcast com dados válidos
+    Given o usuário está na tela de criação de episódio de podcast
+    And o título do episódio foi preenchido com "Episódio 1"
+    And a descrição do episódio foi preenchida com "Descrição do episódio 1"
+    And um arquivo de áudio válido foi anexado
+    When o usuário pressionar em criar episódio
+    Then o episódio é criado com sucesso
+    And o episódio fica disponível para publicação 
+    And data e duração são preenchidos automaticamente
+
+  Scenario: Criar episódio de podcast com título nulo
+    Given o usuário está na tela de criação de episódio de podcast
+    And o título do episódio foi preenchido com ""
+    And a descrição do episódio foi preenchida com "Descrição do episódio 2"
+    And um arquivo de áudio válido foi anexado
+    When o usuário pressionar em criar episódio
+    Then o sistema rejeita a requisição
+    And retorna a mensagem de erro "O título do episódio é obrigatório"
+
+  Scenario: Criar episódio de podcast com descrição nula
+    Given o usuário está na tela de criação de episódio de podcast
+    And o título do episódio foi preenchido com "Episódio 3"
+    And a descrição do episódio foi preenchida com ""
+    And um arquivo de áudio válido foi anexado
+    When o usuário pressionar em criar episódio
+    Then o sistema rejeita a requisição
+    And retorna a mensagem de erro "A descrição do episódio é obrigatória"
+
+  Scenario: Criar episódio de podcast com arquivo que não é áudio
+    Given o usuário está na tela de criação de episódio de podcast
+    And o título do episódio foi preenchido com "Episódio 4"
+    And a descrição do episódio foi preenchida com "Descrição do episódio 4"
+    And um arquivo de vídeo foi anexado
+    When o usuário pressionar em criar episódio
+    Then o sistema rejeita a requisição
+    And retorna a mensagem de erro "Apenas arquivos de áudio são permitidos"
+
+  Scenario: Programar episódio de podcast para data futura
+    Given o usuário está na tela de criação de episódio de podcast
+    And o título do episódio foi preenchido com "Episódio 5"
+    And a descrição do episódio foi preenchida com "Descrição do episódio 5"
+    And um arquivo de áudio válido foi anexado
+    And a data de publicação foi preenchida com uma data futura
+    When o usuário pressionar em criar episódio
+    Then o episódio é criado com sucesso
+    And o episódio fica agendado para a data informada
+
+  Scenario: Editar episódio de podcast
+    Given o usuário tem um episódio de podcast criado com título "Episódio 6" e descrição "Descrição do episódio 6"
+    And o episódio atual possui um arquivo de áudio publicado
+    When o usuário editar o título para "Episódio 6 Editado" e a descrição para "Descrição do episódio 6 editada"
+    And substituir o arquivo de áudio do episódio
+    Then as alterações são salvas com sucesso
+    And o arquivo antigo é permanentemente substituído
+    And o sistema não mantém histórico de edições
+
+  Scenario: Excluir episódio de podcast
+    Given o usuário tem um episódio de podcast criado com título "Episódio 7" e descrição "Descrição do episódio 7"
+    When o usuário excluir o episódio
+    Then o episódio é removido com sucesso
