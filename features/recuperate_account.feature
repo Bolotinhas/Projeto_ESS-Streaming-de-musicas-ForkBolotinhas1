@@ -1,7 +1,3 @@
-Feature: Recuperação de conta via E-mail/ Esqueci a senha
-As a usuário
-I want to recuperar minha conta caso eu esquecer a senha
-So that eu possa usar a minha conta novamente
 
 Scenario: Solicitar recuperação de conta com e-mail válido
 Given eu tenho uma conta cadastrada com o e-mail "abc@gmail.com"
@@ -43,8 +39,5 @@ And o campo "Senha" deve estar destacado como inválido
 Scenario: Invalidar link de redefinição de senha após uso
 Given eu recebi um link válido de redefinição de senha
 When eu utilizo o link de redefinição
-<<<<<<< HEAD
 Then o link de redefinição deve se tornar inválido
-=======
-Then o link de redefinição deve se tornar inválido
->>>>>>> dd85cddd37fd431fd24e1a13851167d1d45fc7fd
+

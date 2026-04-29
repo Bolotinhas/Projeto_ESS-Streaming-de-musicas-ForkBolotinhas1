@@ -1,7 +1,3 @@
-Feature: Exibir histórico de músicas e podcasts ouvidos
-As a usuário
-I want to ver meu histórico de músicas e podcasts
-So that eu possa rever as músicas e podcasts que eu escutei
 
 Scenario: Visualizar histórico vazio
 Given eu estou logado na minha conta
@@ -100,8 +96,5 @@ Given eu estou logado na minha conta
 And meu histórico possui pelo menos um item existente
 When eu faço logout
 And eu faço login após o logout
-<<<<<<< HEAD
 Then meu histórico deve permanecer o mesmo
-=======
-Then meu histórico deve permanecer o mesmo
->>>>>>> dd85cddd37fd431fd24e1a13851167d1d45fc7fd
+

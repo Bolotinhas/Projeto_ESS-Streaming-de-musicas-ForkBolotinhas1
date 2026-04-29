@@ -1,7 +1,3 @@
-Feature: Manutenção de conta
-As a usuário
-I want to ser capaz de atualizar ou desligar minha conta
-So that eu possa gerenciar a minha conta
 
 Scenario: Atualização de uma informação da conta
 Given eu estou logado na minha conta
@@ -99,8 +95,5 @@ When eu clico no botão de "Remover conta"
 And eu preencho o campo de "Senha" com "Senhasupersecreta1!"
 And eu clico no botão de "Confirmar"
 Then eu vejo uma mensagem na tela dizendo "Sua conta foi removida do sistema com sucesso."
-<<<<<<< HEAD
 And minha conta não deve mais existir no sistema
-=======
-And minha conta não deve mais existir no sistema
->>>>>>> dd85cddd37fd431fd24e1a13851167d1d45fc7fd
+
