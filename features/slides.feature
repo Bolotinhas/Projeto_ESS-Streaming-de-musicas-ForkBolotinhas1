@@ -33,11 +33,12 @@ And o usuário consegue ver a mensagem "Por favor preencha o campo do nome"
 
 Scenario: Adição de nova música a um álbum existente com sucesso
 
-Given eu estou logado como "Artista" "Vivaldi"
-And existe um álbum chamado "Four Seasons" publicado por "Vivaldi" com a música "Winter"
+Given estou logado como "Artista" com login "Vivaldi"
+And existe um álbum chamado "Four Seasons" publicado por "Vivaldi"
+And a última música do álbum "Four Seasons" é "Winter" de índice "1"
 When tento adicionar a música "Spring" com gênero "Barroco" e arquivo "spring.mp3" ao álbum "Four Seasons"
-Then eu vejo uma mensagem de sucesso "Música Spring adicionada com sucesso!"
-And as músicas "Winter" e "Spring" estão no álbum "Four Seasons"
+Then eu vejo uma mensagem de sucesso "Música " "Spring" " adicionada com sucesso!"
+And as músicas "Winter" de índice "1" e "Spring" de índice "2" estão no álbum "Four Seasons"
 
 
 
