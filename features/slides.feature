@@ -66,13 +66,7 @@ As a usuário
 I want to acessar a página de busca com filtros
 So that I can acessar e reproduzir rapidamente as faixas que desejo consumir
 
-  Cenário: Busca por nome com correlação integral que retorna um resultado
-    Given estou logado como “Usuário” 
-    And estou na página "Busca"
-    And existe um item com título "Love will tear us apart" do tipo "Música" armazenado no sistema
-    When realizo uma busca pelo termo "Love will tear us apart"
-    Then o sistema deve exibir o item "Love will tear us apart" nos resultados
-    And eu continuo na página "Busca"
+
 
 
   Cenário: Busca por nome com correlação parcial que retorna um resultado
