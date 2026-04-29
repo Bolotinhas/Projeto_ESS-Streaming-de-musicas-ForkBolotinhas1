@@ -1,6 +1,10 @@
 # Usuário(Gledson)
 
 #Playlists(Peuba)
+Feature: Playlists
+As a usuário
+I want to criar playlists personalizada com minhas músicas escolhidas
+So that eu possa escutar as músicas desejadas naquela playlists
 Scenario: Criar uma playlist com sucesso
 Given que o usuário "LuisCardoso012" está logado
 And o usuário está na página "Playlists"
