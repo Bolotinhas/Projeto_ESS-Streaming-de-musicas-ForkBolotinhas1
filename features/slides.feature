@@ -6,7 +6,7 @@ As a usuário
 I want to criar playlists personalizada com minhas músicas escolhidas
 So that eu possa escutar as músicas desejadas naquela playlists
 Scenario: Criar uma playlist com sucesso
-Given estou logado como “Usuário” com login “LuisCardoso012”
+Given estou logado como "Usuário" com login "LuisCardoso012"
 And o usuário está na página "Playlists"
 When o usuário seleciona a opção "Criar Playlist"
 And o usuário preenche o nome com "Músicas de rock", a descrição com
@@ -16,7 +16,7 @@ And o usuário consegue ver a playlist com o nome "Músicas
 de rock"
 
 Scenario: Falha ao tentar criar uma playlist por não ter nome
-Given estou logado como “Usuário” com login “LuisCardoso012”
+Given estou logado como "Usuário" com login "LuisCardoso012"
 And o usuário está na página "Playlists"
 When o usuário seleciona a opção "Criar Playlist"
 And o usuário não preenche o campo nome
@@ -32,12 +32,10 @@ And o usuário consegue ver a mensagem "Por favor preencha o campo do nome"
 
 Scenario: Adição de nova música a um álbum existente com sucesso
 
-Given eu estou logado como artista "Vivaldi"
-And existe um álbum chamado "Four Seasons" publicado por "Vivaldi" com
-      a música "Winter", 
-When tento adicionar a música "Spring" com gênero "Barroco" e arquivo 
-       "spring.mp3"  ao álbum "Four Seasons"
-Then eu vejo uma mensagem de sucesso
+Given eu estou logado como "Artista" "Vivaldi"
+And existe um álbum chamado "Four Seasons" publicado por "Vivaldi" com a música "Winter"
+When tento adicionar a música "Spring" com gênero "Barroco" e arquivo "spring.mp3" ao álbum "Four Seasons"
+Then eu vejo uma mensagem de sucesso "Música Spring adicionada com sucesso!"
 And as músicas "Winter" e "Spring" estão no álbum "Four Seasons"
 
 
@@ -49,11 +47,11 @@ I want to criar, editar e excluir episódios de podcast
 So that I can gerenciar meu conteúdo de forma eficiente
 
   Scenario: Criar episódio de podcast com dados válidos
-    Given eu estou logado como um artista com login"Juninho" e senha "1234"
+    Given eu estou logado como "Artista" "Juninho"
     And estou na tela de criação de episódio de podcast
     When tento criar um episódio com nome "Episódio 1", descrição "primeiro episódio", arquivo "ep1.mp3" válido
     Then data e duração são preenchidos automaticamente
-    And retorna a mensagem de sucesso "Episódio criado com sucesso"
+    Then eu vejo uma mensagem de sucesso "Episódio criado com sucesso"
     And o episódio fica disponível para visualização pública
 
 
@@ -64,7 +62,7 @@ I want to acessar a página inicial
 So that I can acessar rapidamente as seções de histórico, Em alta, Minhas playlists, campo de busca e configurações
 
   Cenário: Exibição da página inicial para usuário logado
-    Given estou logado como “Usuário” com login “LuisCardoso012”
+    Given estou logado como "Usuário" com login "LuisCardoso012"
     When acesso a página "Inicial"
     Then posso ver ao campo "Busca"
     And posso ver a seção "Músicas em Alta"
@@ -72,7 +70,7 @@ So that I can acessar rapidamente as seções de histórico, Em alta, Minhas pla
     And posso ver a seção "Histórico de músicas e podcasts reproduzidos"
     And posso ver a seção "Minhas playlists"
     And posso ver a seção "Configurações"
-    And vejo uma mensagem na parte de cima da tela: “Ola, LuisCardoso012!”
+    And vejo uma mensagem na parte de cima da tela: "Ola, LuisCardoso012!"
 
 Feature: Implementação inicial de Busca com Filtros
 As a usuário
@@ -80,7 +78,7 @@ I want to acessar a página de busca com filtros
 So that I can acessar e reproduzir rapidamente as faixas que desejo consumir
 
   Cenário: Busca por nome com correlação parcial que retorna um resultado
-    Given estou logado como “Usuário” 
+    Given eu estou logado como "Usuário" 
     And estou na página "Busca"
     And existe um item com título "Love will tear us apart" do tipo "Música" com 3000 reproduções armazenado no sistema
     And existe um item com título "Love, Hate, Love" do tipo "Música" com 4000 reproduções armazenado no sistema
