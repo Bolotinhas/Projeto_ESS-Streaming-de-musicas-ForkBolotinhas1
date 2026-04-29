@@ -10,7 +10,7 @@ Given estou logado como "Usuário" com login "LuisCardoso012"
 And o usuário está na página "Playlists"
 When o usuário seleciona a opção "Criar Playlist"
 And o usuário preenche o nome com "Músicas de rock", a descrição com
-"Melhores musicas"
+"Melhores musicas" e a visibilidade como “pública”
 Then o usuário ainda está na página "Playlists"
 And o usuário consegue ver a playlist com o nome "Músicas
 de rock"
