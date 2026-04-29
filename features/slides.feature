@@ -103,12 +103,12 @@ So that eu possa excluir meus dados da plataforma
 
 Scenario: Remoção de artista já cadastrado com sucesso
 
-Given estou logado como "Artista" com login "Vivaldi"
+Given estou logado como "Artista" com login "Vivaldi" e senha "123"
 And o artista "Vivaldi" possui um álbum chamado "Four Seasons"
 And o álbum "Four Seasons" possui uma música chamada "Winter"
-When o usuário seleciona a opção "Remover Conta"
-And o usuário confirma a remoção
+When eu tento remover minha conta
+And digito a senha "123" 
 Then eu vejo uma mensagem de sucesso "Artista removido com sucesso"
 And o artista "Vivaldi" não está mais cadastrado na plataforma
 And o álbum "Four Seasons" não está mais disponível na plataforma
-And a música "Winter" não está mais disponível na plataformas
+And a música "Winter" não está mais disponível na plataforma
