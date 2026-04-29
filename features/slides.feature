@@ -51,7 +51,7 @@ I want to acessar a página inicial
 So that I can acessar rapidamente as seções de histórico, Em alta, Minhas playlists, campo de busca e configurações
 
   Cenário: Exibição da página inicial para usuário logado
-    Given estou logado como “Usuário” com login “LuisCardoso012” e senha “1234”
+    Given estou logado como “Usuário” com login “LuisCardoso012”
     When acesso a página "Inicial"
     Then posso ver ao campo "Busca"
     And posso ver a seção "Músicas em Alta"
