@@ -34,7 +34,7 @@ Scenario: Adição de nova música a um álbum existente com sucesso
 
 Given eu estou logado como artista "Vivaldi"
 And existe um álbum chamado "Four Seasons" publicado por "Vivaldi" com
-      a música “Winter", 
+      a música "Winter", 
 When tento adicionar a música "Spring" com gênero "Barroco" e arquivo 
        "spring.mp3"  ao álbum "Four Seasons"
 Then eu vejo uma mensagem de sucesso
