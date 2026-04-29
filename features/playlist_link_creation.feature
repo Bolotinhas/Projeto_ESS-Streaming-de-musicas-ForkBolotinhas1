@@ -5,12 +5,14 @@ So that eu consiga compartilhar uma playlist personalizada
 
 Scenario: Criação com sucesso do link de uma playlist pública
 Given eu estou logado como "Usuário" com login "arthur123"
+And existe uma playlist "Músicas de Rock" cadastrada no sistema
 And estou na página da playlist "Músicas de Rock", com status "pública"
 When eu seleciono compartilhar playlist
 Then aparece uma mensagem com o link "https://.../playlist/~hash-do-link"
 
 Scenario: Criação com erro do link de uma playlist privada
 Given eu estou logado como "Usuário" com login "arthur123"
+And existe uma playlist "Músicas de Rock" cadastrada no sistema
 And estou na página da playlist "Músicas de Rock", com status "privada"
 When eu seleciono compartilhar playlist
 Then aparece uma mensagem de erro "Essa playlist é privada, não é possível compartilhar."
