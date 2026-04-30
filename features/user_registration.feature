@@ -1,7 +1,7 @@
 Feature: Cadastro de usuários
 As a usuário visitante
 I want to cadastrar no serviço de streaming de música
-So that eu possa ouvir músicas e podcasts de acordo com as playlists que eu criar
+So that eu possa ouvir músicas e podcasts 
 
 Scenario: Cadastro realizado com sucesso
 Given eu estou na página de “Cadastro de usuário”
