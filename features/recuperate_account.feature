@@ -1,3 +1,7 @@
+Feature: Recuperação de conta via E-mail/ Esqueci a senha
+As a usuário
+I want to recuperar minha conta caso eu esquecer a senha
+So that eu possa usar a minha conta novamente
 
 Scenario: Solicitar recuperação de conta com e-mail válido
 Given eu tenho uma conta cadastrada com o e-mail "abc@gmail.com"
