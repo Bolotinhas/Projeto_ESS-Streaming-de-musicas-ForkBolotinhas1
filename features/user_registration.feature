@@ -19,7 +19,7 @@ Given existe uma conta já cadastrada com o Login “Carlo1”
 And eu estou na página de cadastro
 When eu preencho os campos com
     |  login  |   nome  |        senha        |        email         |  tipo de conta  |
-    |  Carlo1 |  Carlos | Senhasupersecreta1! | Carlinhos1@gmail.com |     Ouvinte     |
+    |  Carlo1 |  Carlos | Senhasupersecreta1! | Carlinhos@gmail.com |     Ouvinte     |
 And eu tento finalizar o cadastro
 Then eu vejo uma mensagem na tela de “Já existe uma conta com esse Login. Use outro Login.”
 And eu continuo na página de cadastro
