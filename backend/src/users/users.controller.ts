@@ -30,22 +30,22 @@ export class UsersController {
   @Patch(':login/promote')
   @UseGuards(JwtAuthGuard)
   promote(@Param('login') login: string, @Request() req,) {
-    if (req.user.role !== UserRole.ADMIN) {throw new ForbiddenException('Apenas administradores podem promover usuários.');}
+    if (req.user.tipodeconta !== UserRole.ADMIN) {throw new ForbiddenException('Apenas administradores podem promover usuários.');}
     return this.usersService.promote(login);
   }
 
   @Patch(':login')
   @UseGuards(JwtAuthGuard)
   update(@Param('login') login: string, @Body() updateUserDto: UpdateUserDto, @Request() req) {
-    if (req.user.login !== login && req.user.role !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
-    if(req.user.role !== UserRole.ADMIN && updateUserDto.role === UserRole.ADMIN){throw new ForbiddenException('Você não pode promover a própria conta para admin.');}
+    if (req.user.login !== login && req.user.tipodeconta !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
+    if(req.user.tipodeconta !== UserRole.ADMIN && updateUserDto.tipodeconta === UserRole.ADMIN){throw new ForbiddenException('Você não pode promover a própria conta para admin.');}
     return this.usersService.update(login, updateUserDto);
   }
 
   @Delete(':login')
   @UseGuards(JwtAuthGuard)
   remove(@Param('login') login: string, @Request() req, ) {
-    if (req.user.login !== login && req.user.role !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
+    if (req.user.login !== login && req.user.tipodeconta !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
     return this.usersService.remove(login);
   }
 }
