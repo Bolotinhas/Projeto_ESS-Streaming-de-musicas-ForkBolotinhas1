@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) { //payload é o que foi colocado no login
     return {
       login: payload.sub,
-      role: payload.role,
+      tipodeconta: payload.tipodeconta,
     };
   }
 }

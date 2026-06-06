@@ -24,11 +24,11 @@ export class AuthService{
     if (user.password !== loginDto.password) {throw new UnauthorizedException('Login ou senha inválidos.');}
     const payload = {
     sub: user.login,
-    role: user.tipodeconta,
+    tipodeconta: user.tipodeconta,
   };
   return {
     access_token: this.jwtService.sign(payload),
-    role: user.tipodeconta
+    tipodeconta: user.tipodeconta
   };
     }
 }
