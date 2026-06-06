@@ -1,6 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { RemoveUserDto } from './dto/remove-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User, UserRole } from './entities/user.entity';
@@ -36,11 +37,12 @@ export class UsersService {
     return this.usersRepository.save(user) //faz update em vez de insert pois o typeorm percebe que o objeto ja tem id
   }
 
-  async remove(login: string) {
-   const removedUser = await this.findOne(login) //acha o login do usuario pra remover
-   await this.usersRepository.remove(removedUser)
-   return removedUser //retorna o id do usuario removido
-  }
+  async remove(login: string, removeUserDto: RemoveUserDto) {
+  const removedUser = await this.findOne(login);
+  if (removedUser.password !== removeUserDto.password){throw new UnauthorizedException('Senha incorreta.');}
+  await this.usersRepository.remove(removedUser);
+  return removedUser;
+}
   async promote(login: string) {
     const user = await this.findOne(login);
     user.tipodeconta = UserRole.ADMIN;

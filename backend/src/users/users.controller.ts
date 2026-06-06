@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Request, ForbiddenEx
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { RemoveUserDto } from './dto/remove-user.dto';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserRole } from './entities/user.entity';
@@ -37,15 +38,15 @@ export class UsersController {
   @Patch(':login')
   @UseGuards(JwtAuthGuard)
   update(@Param('login') login: string, @Body() updateUserDto: UpdateUserDto, @Request() req) {
-    if (req.user.login !== login && req.user.tipodeconta !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
+    if(req.user.login !== login && req.user.tipodeconta !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
     if(req.user.tipodeconta !== UserRole.ADMIN && updateUserDto.tipodeconta === UserRole.ADMIN){throw new ForbiddenException('Você não pode promover a própria conta para admin.');}
     return this.usersService.update(login, updateUserDto);
   }
 
   @Delete(':login')
   @UseGuards(JwtAuthGuard)
-  remove(@Param('login') login: string, @Request() req, ) {
+  remove(@Param('login') login: string, @Body() removeUserDto: RemoveUserDto, @Request() req, ) {
     if (req.user.login !== login && req.user.tipodeconta !== UserRole.ADMIN) {throw new ForbiddenException('Você não possui permissão para realizar esta ação.',);}
-    return this.usersService.remove(login);
+    return this.usersService.remove(login, removeUserDto);
   }
 }
