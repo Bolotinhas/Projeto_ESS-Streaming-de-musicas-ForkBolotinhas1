@@ -33,6 +33,13 @@ export class UsersService {
 
   async update(login: string, updateUserDto: UpdateUserDto) {
     const user = await this.findOne(login) //garante que o usuario existe ou lanca notfoundexception
+    const fieldNames = {
+    login: 'login',
+    name: 'nome',
+    password: 'senha',
+    email: 'e-mail',
+    tipodeconta: 'tipo de conta',
+  };
     const fieldsToUpdate = Object.entries(updateUserDto).filter(
     ([_, value]) => value !== undefined && value !== null && value !== '',
   );
@@ -43,15 +50,15 @@ export class UsersService {
     );
   }
 
-  const hasEqualValue = fieldsToUpdate.some(
-    ([key, value]) => user[key] === value,
-  );
+  const equalFields = fieldsToUpdate
+  .filter(([key, value]) => user[key] === value)
+  .map(([key]) => fieldNames[key] ?? key);
 
-  if (hasEqualValue) {
-    throw new BadRequestException(
-      'Não é possível atualizar um atributo com o mesmo valor do atual.',
-    );
-  }
+if (equalFields.length > 0) {
+  throw new BadRequestException(
+    `Não é possível atualizar os seguintes campos com o mesmo valor atual: ${equalFields.join(', ')}.`,
+  );
+}
 
     Object.assign(user,updateUserDto) //sobreescreve os campos enviados
     const updatedUser = await this.usersRepository.save(user);
