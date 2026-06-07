@@ -8,6 +8,7 @@ import { Recomendacoes } from './pages/Recomendacoes';
 import { Historico }     from './pages/Historico';
 import { Register }      from './pages/Register';
 import { AdminUsers }    from './pages/AdminUsers';
+import { AccountSettings } from './pages/AccountSettings';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/auth/login"    element={<Login />}         />
           <Route path="/auth/register" element={<Register />}      />
           <Route path="/admin/users"   element={<AdminUsers />}    />
+          <Route path="/conta" element={<AccountSettings />}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
