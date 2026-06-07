@@ -14,7 +14,9 @@ Then o usuário de login "Carlos1" é armazenado corretamente pelo sistema com o
 And o sistema retorna a mensagem "Seja bem-vindo ao .WAVe."
 
 Scenario: Tentativa de cadastro com um Login já existente
-Given o sistema possui uma conta cadastrada com o login "Carlos1"
+Given o sistema possui uma conta cadastrada com os dados:
+    |  login   |  name  |     password        |      email       |  tipodeconta  |
+    |  Carlos1 | Carlos | Senhasupersecreta1! | carlos@gmail.com |   OUVINTE     |
 When eu envio uma solicitação de cadastro com os dados:
     |  login   |  name  |     password        |      email       |  tipodeconta  |
     |  Carlos1 | Carlos | Senhasupersecreta1! | carlos@gmail.com |   OUVINTE     |

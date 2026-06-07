@@ -35,15 +35,6 @@ let dataSource;
                 await dataSource.query('TRUNCATE TABLE "users" CASCADE;'); 
         }}});
 
-        Given('o sistema possui uma conta cadastrada com o login {string}', async function (login) {
-            await userRepository.save({login,
-            name: 'Carlos',
-            password: 'Senha123!',
-            email: 'carlos@gmail.com',
-            tipodeconta: 'OUVINTE',
-        });
-        });
-
         Given('não existe uma conta cadastrada com o login {string}', async function (login) {
             await userRepository.delete({ login });
         });
