@@ -39,6 +39,12 @@ export function Home() {
           </Link>
         )}
 
+        {logado && (
+          <Link to="/conta" className="home-btn">
+            Configurações da Conta
+          </Link>
+        )}
+
         {tipodeconta === 'ADMIN' && (
           <Link to="/admin/users" className="home-btn">
             Gerenciar Usuários

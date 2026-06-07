@@ -1,13 +1,12 @@
 .home-container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   aspect-ratio: 16 / 9;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Barlow', sans-serif;
   background-color: #f5f5f0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 .home-header {
   background-color: #F5F5F0;
@@ -32,7 +31,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8rem 3rem;        /* ← mais espaço vertical e horizontal */
-  width: 100%;
+  width: 110%;
   padding: 1rem 2rem;    /* ← afasta os botões das bordas */
   box-sizing: border-box;
 }
