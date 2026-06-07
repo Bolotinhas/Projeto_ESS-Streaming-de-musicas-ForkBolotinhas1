@@ -24,7 +24,7 @@ And o usuário "Carlos1" está autenticado no sistema
 When o sistema recebe uma solicitação para atualizar o usuário "Carlos1" com os dados:
     |     password        |
     | Senhasupersecreta1! |
-Then o sistema retorna a mensagem "Não é possível atualizar um atributo com o mesmo valor do atual."
+Then o sistema retorna a mensagem "Não é possível atualizar os seguintes campos com o mesmo valor atual: senha."
 And o sistema não altera os dados do usuário "Carlos1"
 
 Scenario: Não permitir atualização de informação com um valor inválido
