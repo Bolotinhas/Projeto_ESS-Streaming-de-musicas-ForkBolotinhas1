@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RemoveUserDto } from './dto/remove-user.dto';
@@ -33,15 +33,43 @@ export class UsersService {
 
   async update(login: string, updateUserDto: UpdateUserDto) {
     const user = await this.findOne(login) //garante que o usuario existe ou lanca notfoundexception
+    const fieldsToUpdate = Object.entries(updateUserDto).filter(
+    ([_, value]) => value !== undefined && value !== null && value !== '',
+  );
+
+  if (fieldsToUpdate.length === 0) {
+    throw new BadRequestException(
+      'Não é possível realizar uma atualização sem preencher nenhum campo.',
+    );
+  }
+
+  const hasEqualValue = fieldsToUpdate.some(
+    ([key, value]) => user[key] === value,
+  );
+
+  if (hasEqualValue) {
+    throw new BadRequestException(
+      'Não é possível atualizar um atributo com o mesmo valor do atual.',
+    );
+  }
+
     Object.assign(user,updateUserDto) //sobreescreve os campos enviados
-    return this.usersRepository.save(user) //faz update em vez de insert pois o typeorm percebe que o objeto ja tem id
+    const updatedUser = await this.usersRepository.save(user);
+
+    return {
+      message: 'Dados atualizados com sucesso.',
+      user: updatedUser,
+    }; 
   }
 
   async remove(login: string, removeUserDto: RemoveUserDto) {
   const removedUser = await this.findOne(login);
-  if (removedUser.password !== removeUserDto.password){throw new UnauthorizedException('Senha incorreta.');}
+  if (removedUser.password !== removeUserDto.password){throw new UnauthorizedException('Senha incorreta. Insira a senha correta para realizar a remoção da conta.');}
   await this.usersRepository.remove(removedUser);
-  return removedUser;
+  return {
+    message: 'A conta foi removida do sistema com sucesso.',
+    user: removedUser,
+  };
 }
   async promote(login: string) {
     const user = await this.findOne(login);
