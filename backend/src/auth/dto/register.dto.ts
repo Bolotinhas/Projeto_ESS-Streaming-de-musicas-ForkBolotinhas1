@@ -1,4 +1,4 @@
-import {IsEmail,IsEnum,MinLength, MaxLength, IsNotEmpty,IsString,} from 'class-validator';
+import {IsEmail,IsEnum,MinLength, MaxLength, IsNotEmpty,IsString, IsOptional,} from 'class-validator';
 import { UserRole } from '../../users/entities/user.entity';
 export class RegisterDto {
    @IsString()
@@ -22,4 +22,9 @@ export class RegisterDto {
    @IsEnum(UserRole, {message: 'O tipo de conta informado deve ser válido.',})
    @IsNotEmpty({message: 'O campo tipodeconta não pode estar vazio.'})
    "tipodeconta": UserRole;
+   @IsOptional()
+   @IsString()
+   @MinLength(1, {message: 'A descricao deve ter pelo menos 1 caractere. Construa outra descricao.'})
+   @MaxLength(120, {message: 'A descricao não pode ter mais de 120 caracteres.'})
+   "descricao"?: string;
 }
