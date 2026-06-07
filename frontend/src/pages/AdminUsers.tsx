@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { getUsersApi, updateUserApi } from '../api';
+import { getUsersApi, updateUserApi, removeUserApi, registerApi } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import './AdminUsers.css';
@@ -13,13 +13,61 @@ export function AdminUsers() {
   const [novaSenha, setNovaSenha] = useState('');
   const [novoTipo, setNovoTipo] = useState('');
   const [erroAtualizacao, setErroAtualizacao] = useState('');
+  const [senhaRemocao, setSenhaRemocao] = useState('');
+  const [erroRemocao, setErroRemocao] = useState('');
+  const [inserindoUsuario, setInserindoUsuario] = useState(false);
+  const [loginNovoUsuario, setLoginNovoUsuario] = useState('');
+  const [nomeNovoUsuario, setNomeNovoUsuario] = useState('');
+  const [senhaNovoUsuario, setSenhaNovoUsuario] = useState('');
+  const [emailNovoUsuario, setEmailNovoUsuario] = useState('');
+  const [tipoNovoUsuario, setTipoNovoUsuario] = useState('OUVINTE');
+  const [erroInsercao, setErroInsercao] = useState('');
 
   function selecionarUsuario(usuario: any) {
     setErroAtualizacao('');
+    setInserindoUsuario(false);
     setUsuarioEditando(usuario);
     setNovoNome(usuario.name);
     setNovaSenha('');
-    setNovoTipo(usuario.role);
+    setNovoTipo(usuario.tipodeconta);
+  }
+
+  async function inserirUsuario() {
+  try {
+    await registerApi(
+      loginNovoUsuario,
+      nomeNovoUsuario,
+      senhaNovoUsuario,
+      emailNovoUsuario,
+      tipoNovoUsuario,
+    );
+    setErroInsercao('');
+    setLoginNovoUsuario('');
+    setNomeNovoUsuario('');
+    setSenhaNovoUsuario('');
+    setEmailNovoUsuario('');
+    setTipoNovoUsuario('OUVINTE');
+    setInserindoUsuario(false);
+    await carregarUsuarios();
+    alert('Usuário inserido.');
+  } catch (e: any) {
+    const mensagem =
+      e.response?.data?.message ||
+      'Erro ao inserir usuário.';
+    setErroInsercao(
+      Array.isArray(mensagem)
+        ? mensagem[0]
+        : mensagem,
+    );
+  }
+}
+
+  function cancelarEdicao() {
+  setUsuarioEditando(null);
+  setErroAtualizacao('');
+  setNovoNome('');
+  setNovaSenha('');
+  setNovoTipo('');
   }
 
   async function salvarAlteracoes() {
@@ -35,8 +83,8 @@ export function AdminUsers() {
     dadosAtualizacao.password = novaSenha;
   }
 
-  if (novoTipo !== '' && novoTipo !== usuarioEditando.role) {
-    dadosAtualizacao.role = novoTipo;
+  if (novoTipo !== '') {
+    dadosAtualizacao.tipodeconta = novoTipo;
   }
 
   if (Object.keys(dadosAtualizacao).length === 0) {
@@ -82,6 +130,35 @@ const carregarUsuarios = useCallback(async () => {
   carregarUsuarios();
 }, [carregarUsuarios]);
 
+async function removerUsuario() {
+  if (!token || !usuarioEditando) return;
+
+  try {
+    await removeUserApi(
+      usuarioEditando.login,
+      senhaRemocao,
+      token,
+    );
+
+    setErroRemocao('');
+    setSenhaRemocao('');
+    setUsuarioEditando(null);
+
+    await carregarUsuarios();
+
+    alert('Usuário removido.');
+  } catch (e: any) {
+    const mensagem =
+      e.response?.data?.message ||
+      'Erro ao remover usuário.';
+
+    setErroRemocao(
+      Array.isArray(mensagem)
+        ? mensagem[0]
+        : mensagem,
+    );
+  }
+}
 
   return (
     <div>
@@ -113,6 +190,11 @@ const carregarUsuarios = useCallback(async () => {
           ))}
         </tbody>
       </table>
+      {!usuarioEditando && !inserindoUsuario && (
+          <button onClick={() => setInserindoUsuario(true)}>
+            Inserir Usuário
+          </button>
+        )}
       {usuarioEditando && (
         <div className="editar-usuario">
 
@@ -142,13 +224,93 @@ const carregarUsuarios = useCallback(async () => {
             <option value="PODCAST">PODCAST</option>
             <option value="ADMIN">ADMIN</option>
             </select>
-
+            <div className="acoes-edicao">
             <button onClick={salvarAlteracoes}>
             Salvar
             </button>
+            <button onClick={cancelarEdicao}>
+            Cancelar
+          </button>
+          </div>
+          <hr />
+          <h3>Remover Usuário</h3>
 
+          <input
+            type="password"
+            placeholder="Confirme a senha"
+            value={senhaRemocao}
+            onChange={e => setSenhaRemocao(e.target.value)}
+          />
+
+          <button onClick={removerUsuario}>
+            Remover Usuário
+          </button>
+
+          {erroRemocao && (
+            <p className="erro">
+              {erroRemocao}
+            </p>
+          )}
         </div>
         )}
+        {inserindoUsuario && (
+        <div className="editar-usuario">
+
+          <h2>Inserir Usuário</h2>
+
+          <input
+            placeholder="Login"
+            value={loginNovoUsuario}
+            onChange={e => setLoginNovoUsuario(e.target.value)}
+          />
+
+          <input
+            placeholder="Nome"
+            value={nomeNovoUsuario}
+            onChange={e => setNomeNovoUsuario(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senhaNovoUsuario}
+            onChange={e => setSenhaNovoUsuario(e.target.value)}
+          />
+
+          <input
+            placeholder="Email"
+            value={emailNovoUsuario}
+            onChange={e => setEmailNovoUsuario(e.target.value)}
+          />
+
+          <select
+            value={tipoNovoUsuario}
+            onChange={e => setTipoNovoUsuario(e.target.value)}
+          >
+            <option value="OUVINTE">OUVINTE</option>
+            <option value="ARTISTA">ARTISTA</option>
+            <option value="PODCAST">PODCAST</option>
+            <option value="ADMIN">ADMIN</option>
+          </select>
+
+          <div className="acoes-edicao">
+            <button onClick={inserirUsuario}>
+              Inserir
+            </button>
+
+            <button onClick={() => setInserindoUsuario(false)}>
+              Cancelar
+            </button>
+          </div>
+
+          {erroInsercao && (
+            <p className="erro">
+              {erroInsercao}
+            </p>
+          )}
+
+        </div>
+      )}
         {erroAtualizacao && (
         <p className="erro">
             {erroAtualizacao}

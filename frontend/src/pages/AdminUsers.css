@@ -16,3 +16,16 @@
   margin-bottom: 10px;
   font-weight: bold;
 }
+
+.acoes-edicao {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.editar-usuario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
