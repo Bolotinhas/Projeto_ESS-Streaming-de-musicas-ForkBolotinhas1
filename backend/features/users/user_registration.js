@@ -51,7 +51,7 @@ let dataSource;
          When('eu envio uma solicitação de cadastro com os dados:', async function (dataTable) {
             // Pega a primeira linha do datatable e transforma em objeto
             requestbody = dataTable.hashes()[0];
-            response = await request(app.getHttpServer()) //manda o request pro server de acordo com o .post e o .send
+            this.response = await request(app.getHttpServer()) //manda o request pro server de acordo com o .post e o .send
             .post('/api/auth/register')
             .send(requestbody);
         });
@@ -70,8 +70,8 @@ let dataSource;
          Then('o sistema retorna a mensagem {string}', function (mensagemEsperada) {
             //process.stdout.write(`\n\nCORPO DA RESPOSTA DA API: ${JSON.stringify(response.body, null, 2)}\n\n`); //mensagem pra analisar o corpo da resposta
             //process.stdout.write(`\n\nMSG ESPERADA (CUCUMBER): "${mensagemEsperada}"\n\n`); //mensagem para ver a variavel mensagemEsperada
-            let mensagemRecebida = Array.isArray(response.body.message) ? response.body.message : [response.body.message];
-            if (!mensagemRecebida.includes(mensagemEsperada)) {throw new Error( `Mensagem não encontrada.\nEsperada: "${mensagemEsperada}"\nRecebidas: ${JSON.stringify(mensagens)}`);}
+            let mensagemRecebida = Array.isArray(this.response.body.message) ? this.response.body.message : [this.response.body.message];
+            if (!mensagemRecebida.includes(mensagemEsperada)) {throw new Error( `Mensagem não encontrada.\nEsperada: "${mensagemEsperada}"\nRecebidas: ${JSON.stringify(mensagemRecebida)}`);}
         });
 
          Then('o usuário de login {string} permanece armazenado no sistema', async function (login) {
