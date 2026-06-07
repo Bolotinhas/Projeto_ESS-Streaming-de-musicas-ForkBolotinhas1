@@ -17,11 +17,11 @@ export function Login() {
       entrar(login, dados.access_token, dados.role);
       navigate('/');
     } catch (e) {
-      setErro('Login ou senha invalidos');
+      setErro('Login ou senha inválidos');
     }
   }
 
-  return (
+  return ( 
     <div>
       <h1>Login</h1>
       <div className="botoes-login">
