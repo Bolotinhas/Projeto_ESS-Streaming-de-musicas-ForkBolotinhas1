@@ -1,0 +1,50 @@
+.account-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.account-container h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.account-container h2 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.account-container p {
+  font-size: 1.05rem;
+}
+
+.account-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.account-btn {
+  padding: 12px 18px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.account-btn-danger {
+  margin-top: 15px;
+}
+
+.account-container hr {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.erro {
+  margin-top: 10px;
+  font-weight: bold;
+}
