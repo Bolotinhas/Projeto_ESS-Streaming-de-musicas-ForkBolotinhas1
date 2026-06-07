@@ -14,7 +14,7 @@ export function Login() {
   async function handleLogin() {
     try {
       const dados = await loginApi(login, password);
-      entrar(login, dados.access_token, dados.role);
+      entrar(login, dados.access_token, dados.tipodeconta);
       navigate('/');
     } catch (e) {
       setErro('Login ou senha inválidos');

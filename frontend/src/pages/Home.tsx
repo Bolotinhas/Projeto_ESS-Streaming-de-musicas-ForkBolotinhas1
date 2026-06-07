@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import './Home.css';
 
 export function Home() {
-  const { login, logado, role, sair } = useAuth();
+  const { login, logado, tipodeconta, sair } = useAuth();
 
   return (
     <div className="home-container">
@@ -39,7 +39,7 @@ export function Home() {
           </Link>
         )}
 
-        {role === 'ADMIN' && (
+        {tipodeconta === 'ADMIN' && (
           <Link to="/admin/users" className="home-btn">
             Gerenciar Usuários
           </Link>

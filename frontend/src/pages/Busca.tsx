@@ -14,7 +14,7 @@ export function Busca() {
   const [resultados, setResultados] = useState<Musica[]>([]);
   const [buscou,     setBuscou]     = useState(false);
   const [carregando, setCarregando] = useState(false);
-  const { login, logado, role, sair } = useAuth();
+  const { login, logado, tipodeconta, sair } = useAuth();
 
   async function buscar() {
     const params = new URLSearchParams();

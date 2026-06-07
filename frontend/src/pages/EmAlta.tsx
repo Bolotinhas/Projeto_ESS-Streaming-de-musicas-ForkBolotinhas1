@@ -9,7 +9,7 @@ import './EmAlta.css';
 export function EmAlta() {
   const [emAlta, setEmAlta]         = useState<Musica[]>([]);
   const [carregando, setCarregando] = useState(true);
-  const { login, logado, role, sair } = useAuth();
+  const { login, logado, tipodeconta, sair } = useAuth();
 
   useEffect(() => {
     api.get(musicasUrl('/em-alta'))
