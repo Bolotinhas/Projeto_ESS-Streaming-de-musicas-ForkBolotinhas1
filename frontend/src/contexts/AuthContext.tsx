@@ -3,8 +3,8 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 interface AuthContextType {
   login:     string | null;
   token:     string | null;
-  role: string | null;
-  entrar:    (login: string, token: string, role: string) => void;
+  tipodeconta: string | null;
+  entrar:    (login: string, token: string, tipodeconta: string) => void;
   sair:      () => void;
   logado:    boolean;
 }
@@ -14,25 +14,25 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [login, setLogin] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [role, setRole] = useState<string | null>(null);
+  const [tipodeconta, settipodeconta] = useState<string | null>(null);
 
-  function entrar(login: string, token: string, role:string) {
+  function entrar(login: string, token: string, tipodeconta:string) {
     setLogin(login);
     setToken(token);
-    setRole(role);
+    settipodeconta(tipodeconta);
   }
 
   function sair() {
     setLogin(null);
     setToken(null);
-    setRole(null)
+    settipodeconta(null)
   }
 
   return (
     <AuthContext.Provider value={{
       login,
       token,
-      role,
+      tipodeconta,
       entrar,
       sair,
       logado: !!token,
