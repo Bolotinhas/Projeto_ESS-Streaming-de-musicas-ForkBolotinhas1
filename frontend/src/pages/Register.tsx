@@ -24,7 +24,7 @@ export function Register() {
       email,
       tipodeconta,
     );
-
+      alert('Cadastro realizado com sucesso. Faça o login para entrar na sua conta.')
       navigate('/');
     } catch (e: any) {
   const mensagem =

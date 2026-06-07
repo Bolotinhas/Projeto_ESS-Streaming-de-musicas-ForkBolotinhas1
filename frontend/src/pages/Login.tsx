@@ -15,13 +15,14 @@ export function Login() {
     try {
       const dados = await loginApi(login, password);
       entrar(login, dados.access_token, dados.tipodeconta);
+      alert('Login realizado com sucesso.')
       navigate('/');
     } catch (e) {
       setErro('Login ou senha inválidos');
     }
   }
 
-  return ( 
+  return (
     <div>
       <h1>Login</h1>
       <div className="botoes-login">
