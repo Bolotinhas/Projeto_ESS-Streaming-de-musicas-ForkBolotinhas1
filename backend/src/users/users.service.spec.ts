@@ -2,7 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UsersService } from './users.service';
 import { User, UserRole } from './entities/user.entity';
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { RemoveUserDto } from './dto/remove-user.dto';
 
 const mockRepository = {
   find: jest.fn(),
@@ -202,18 +203,43 @@ afterEach(() => {
       email: 'carlos@gmail.com',
       tipodeconta: UserRole.OUVINTE,
     };
+    const removeUserDto = {
+      password: 'Senhasupersecreta1!',
+    };
     jest.spyOn(service, 'findOne').mockResolvedValue(userMock as any);
     mockRepository.remove.mockResolvedValue(userMock);
-    const resultado = await service.remove('Carlos1');
+    const resultado = await service.remove('Carlos1', removeUserDto);
     expect(service.findOne).toHaveBeenCalledWith('Carlos1');
     expect(mockRepository.remove).toHaveBeenCalledWith(userMock);
     expect(resultado).toEqual(userMock);
   });
     it('deve lançar NotFoundException quando o usuário não existir', async () => {
-    jest.spyOn(service, 'findOne').mockRejectedValue(
+    const removeUserDto = {
+      password: 'Senhasupersecreta1!',
+    };
+      jest.spyOn(service, 'findOne').mockRejectedValue(
       new NotFoundException('User not found'),
     );
-    await expect(service.remove('inexistente'),).rejects.toThrow(NotFoundException);
+    await expect(service.remove('inexistente', removeUserDto),).rejects.toThrow(NotFoundException);
+    expect(mockRepository.remove).not.toHaveBeenCalled();
+  });
+  it('deve lançar UnauthorizedException quando a senha estiver incorreta', async () => {
+    const userMock = {
+      login: 'Carlos1',
+      name: 'Carlos',
+      password: 'Senhasupersecreta1!',
+      email: 'carlos@gmail.com',
+      tipodeconta: UserRole.OUVINTE,
+    };
+
+    const removeUserDto = {
+      password: 'senhaErrada',
+    };
+    jest.spyOn(service, 'findOne').mockResolvedValue(userMock as any);
+    await expect(
+      service.remove('Carlos1', removeUserDto),
+    ).rejects.toThrow(UnauthorizedException);
+
     expect(mockRepository.remove).not.toHaveBeenCalled();
   });
   });
