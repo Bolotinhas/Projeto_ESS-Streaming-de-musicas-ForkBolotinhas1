@@ -13,7 +13,8 @@ export class AuthService{
     async register(registerDto: RegisterDto){
         const usere = await this.usersService.findByLogin(registerDto.login); //verificar se ja existe usuario com esse login
         if(usere){throw new ConflictException('Já existe uma conta com esse Login. Use outro Login.');}
-        const users = await this.usersService.findAll();
+        const userEmail = await this.usersService.findByEmail(registerDto.email,);
+        if (userEmail) {throw new ConflictException('Voce deve inserir um e-mail válido para realizar o cadastro. Coloque outro e-mail.',);}
         if(registerDto.tipodeconta === UserRole.ADMIN){throw new UnauthorizedException('Voce nao possui permissão para se tornar um admin.');}
         const user = await this.usersService.create(registerDto);
         return {message: 'Seja bem-vindo ao .WAVe.', user,}

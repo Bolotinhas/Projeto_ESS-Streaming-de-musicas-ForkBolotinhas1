@@ -23,7 +23,13 @@ export class UsersService {
   async findByLogin(login: string) {
     //findByLogin retorna o usuário OU null se não encontrar, sem jogar erros
     return await this.usersRepository.findOneBy({ login });
-}
+  }
+
+  async findByEmail(email: string) {
+    return this.usersRepository.findOne({
+      where: { email },
+    });
+  }
 
   async findOne(login: string) {
     const user = await this.usersRepository.findOneBy({login})
