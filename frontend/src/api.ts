@@ -55,3 +55,20 @@ export async function updateUserApi(
 
   return res.data;
 }
+
+export async function removeUserApi(
+  login: string,
+  password: string,
+  token: string,
+) {
+  const response = await api.delete(`/users/${login}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      password,
+    },
+  });
+
+  return response.data;
+}
