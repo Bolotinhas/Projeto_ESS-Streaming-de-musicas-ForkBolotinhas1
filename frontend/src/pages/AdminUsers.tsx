@@ -29,7 +29,7 @@ export function AdminUsers() {
     setUsuarioEditando(usuario);
     setNovoNome(usuario.name);
     setNovaSenha('');
-    setNovoTipo(usuario.tipodeconta);
+    setNovoTipo('');
   }
 
   async function inserirUsuario() {
@@ -219,6 +219,7 @@ async function removerUsuario() {
             value={novoTipo}
             onChange={e => setNovoTipo(e.target.value)}
             >
+            <option value="">Não alterar tipo de conta</option>
             <option value="OUVINTE">OUVINTE</option>
             <option value="ARTISTA">ARTISTA</option>
             <option value="PODCAST">PODCAST</option>
@@ -232,6 +233,11 @@ async function removerUsuario() {
             Cancelar
           </button>
           </div>
+          {erroAtualizacao && (
+        <p className="erro">
+            {erroAtualizacao}
+        </p>
+        )}
           <hr />
           <h3>Remover Usuário</h3>
 
@@ -311,11 +317,6 @@ async function removerUsuario() {
 
         </div>
       )}
-        {erroAtualizacao && (
-        <p className="erro">
-            {erroAtualizacao}
-        </p>
-        )}
       <Link to="/" >
       Voltar para Home
      </Link>
