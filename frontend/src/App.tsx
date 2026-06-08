@@ -9,6 +9,8 @@ import { Historico }     from './pages/Historico';
 import { Register }      from './pages/Register';
 import { AdminUsers }    from './pages/AdminUsers';
 import { AccountSettings } from './pages/AccountSettings';
+import { UpdateAccount } from './pages/UpdateAccount';
+import { RemoveAccount } from './pages/RemoveAccount';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/auth/register" element={<Register />}      />
           <Route path="/admin/users"   element={<AdminUsers />}    />
           <Route path="/conta" element={<AccountSettings />}/>
+          <Route path="/update-account" element={<UpdateAccount />}/>
+          <Route path="/remove-account" element={<RemoveAccount />}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
