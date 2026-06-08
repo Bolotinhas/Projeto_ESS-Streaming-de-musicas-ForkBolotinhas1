@@ -36,7 +36,11 @@
 }
 
 .account-btn-danger {
-  margin-top: 15px;
+  padding: 12px 18px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .account-container hr {
