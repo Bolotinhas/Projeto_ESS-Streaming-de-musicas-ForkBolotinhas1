@@ -72,3 +72,19 @@ export async function removeUserApi(
 
   return response.data;
 }
+
+export async function getUserApi(
+  login: string,
+  token: string
+) {
+  const response = await api.get(
+    `/users/${login}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+}
