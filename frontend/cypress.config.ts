@@ -23,8 +23,8 @@ module.exports = defineConfig({
 
     //só roda .feature
     specPattern: "**/*.feature",
-    //opcional mas recomendado
-    baseUrl: "http://localhost:5173",
-    supportFile: "cypress/support/e2e.js",
+    //opcional mas recomendado site do frontend. site do backend vai ser 3000
+    baseUrl: "http://localhost:3001",
+    supportFile: "cypress/support/e2e.ts",
   },
 });
