@@ -80,7 +80,6 @@ export function UpdateAccount() {
           <h2>Dados Atuais</h2>
           <p><strong>Login:</strong>{' '} {usuario.login}</p>
           <p><strong>Nome:</strong>{' '}{usuario.name}</p>
-          <p><strong>Senha:</strong>{' '}{usuario.password}</p>
           <p><strong>Email:</strong>{' '}{usuario.email}</p>
           <p><strong>Tipo de Conta:</strong>{' '}{usuario.tipodeconta}</p>
         </>
