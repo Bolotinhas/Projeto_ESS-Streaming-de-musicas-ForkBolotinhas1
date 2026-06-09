@@ -181,9 +181,12 @@ afterEach(() => {
       ...updateDto,
     });
     expect(resultado).toEqual({
-      ...userMock,
-      ...updateDto,
-    });
+  message: 'Dados atualizados com sucesso.',
+  user: {
+    ...userMock,
+    ...updateDto,
+  },
+});
   });
     it('deve lançar NotFoundException quando o usuário não existir', async () => {
     jest.spyOn(service, 'findOne').mockRejectedValue(
@@ -211,7 +214,10 @@ afterEach(() => {
     const resultado = await service.remove('Carlos1', removeUserDto);
     expect(service.findOne).toHaveBeenCalledWith('Carlos1');
     expect(mockRepository.remove).toHaveBeenCalledWith(userMock);
-    expect(resultado).toEqual(userMock);
+    expect(resultado).toEqual({
+  message: 'A conta foi removida do sistema com sucesso.',
+  user: userMock,
+});
   });
     it('deve lançar NotFoundException quando o usuário não existir', async () => {
     const removeUserDto = {
